@@ -1,0 +1,24 @@
+Mangea Liviu Darius 334CA
+
+Tema 2 SO
+
+In cadrul temei am implementat functiile din schelet precum si una adaugata
+de mine pentru modularizare.
+
+In functia parse simple am facut verificari daca comanda este una interna, caz
+in care am apelat functiile implementate tot aici (shell_cd si shell_exit)
+sau daca se seteaza o variabila de mediu. Daca nu, inseamna ca este vorba
+despre o comanda externa simpla si apelez functia run_simple care face fork.
+In copil se verifica ce redirectari trebuie facute si sunt facute, iar in
+parinte se doar se asteapta copilul.
+
+In do_in_parallel se face fork, iar una din comenzi este executata de catre
+copil si cealalta de catre parinte.
+
+In functia do_in_pipe se intampla cam acelasi lucru doar ca aici se creaza un
+pipe pentru a trimite outputul primei comenzi catre inputul celei de-a doua
+prin intermediul pipe-ului. Aici am redirectat fisierele de citire si scriere
+pentru pipe catre stdout si stdin deoarece fisierele pentru pipe au o
+dimensiune limitata.
+
+In functia parse_command doar am apelat functiile corespunzatoare in switch.
